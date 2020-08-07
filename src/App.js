@@ -1,26 +1,50 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import styles from "./App.module.css";
+import Card from "./components/Card/Card";
+import CountryDropdown from "./components/CountryDropdown/CountryDropdown";
+import Graph from "./components/Graph/Graph";
+import { fetchTotalData } from "./api";
+import Header from "./components/Header/Header";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = { data: {}, country: "", slug: "" };
+  async componentDidMount() {
+    const data = await fetchTotalData();
+
+    this.setState({ data });
+  }
+
+  handleCountryChange = async (country, slug) => {
+    const Countrydata = await fetchTotalData(country);
+
+    if (Countrydata) {
+      this.setState({ data: Countrydata });
+    } else {
+      this.setState({
+        data: {
+          NewConfirmed: "",
+          NewDeaths: "",
+          NewRecovered: "",
+          TotalConfirmed: "Data Not Available",
+          TotalDeaths: "Data Not Available",
+          TotalRecovered: "Data Not Available",
+        },
+      });
+    }
+
+    this.setState({ country, slug });
+  };
+
+  render() {
+    return (
+      <div className={styles.App}>
+        <Header />
+        <Card data={this.state.data} />
+        <CountryDropdown handleCountryChange={this.handleCountryChange} />
+        <Graph country={this.state.country} slug={this.state.slug} />
+      </div>
+    );
+  }
 }
 
 export default App;

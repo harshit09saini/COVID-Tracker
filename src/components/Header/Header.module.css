@@ -1,0 +1,56 @@
+.header {
+  height: 80vh;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.info h3 {
+  text-transform: uppercase;
+  color: #be3c3f;
+  font-size: 16px;
+}
+
+.info h1 {
+  font-family: "Bebas Neue";
+  font-size: 70px;
+  letter-spacing: 2px;
+  margin-bottom: 30px;
+}
+.info h1 span {
+  color: #be3c3f;
+}
+
+.info p {
+  width: 35%;
+  line-break: auto;
+  line-height: 1.8rem;
+  margin-bottom: 40px;
+}
+
+.buttons button {
+  border: none;
+  height: 50px;
+  width: 150px;
+  border-radius: 5px;
+  background-color: transparent;
+  font-family: "Bebas Neue";
+  font-size: 15px;
+  box-shadow: 0 0 35px 0 rgba(190, 60, 63, 0.1);
+  cursor: pointer;
+}
+
+.buttons button.buttonPrimary {
+  background-color: #be3c3f;
+  color: #fdfffc;
+  margin-right: 10px;
+}
+
+.buttons button.buttonPrimary:hover {
+  background-color: #ab3638;
+}
+
+.buttons button.buttonSecondary:hover {
+  color: #be3c3f;
+}

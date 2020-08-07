@@ -1,0 +1,14 @@
+.CountryDropdown {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.CountryDropdown select {
+  height: 50px;
+  width: 400px;
+  border: none;
+  border-bottom: 3px solid #be3c3f;
+  font-size: 15px;
+  background-color: inherit;
+}

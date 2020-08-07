@@ -1,0 +1,32 @@
+.navbar {
+  height: 50px;
+  margin-top: 20px;
+  /* background-color: thistle; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar h1 {
+  font-family: "Bebas Neue";
+  font-size: 30px;
+}
+.navbar h1 span {
+  color: #be3c3f;
+}
+
+.navbar ul {
+  display: flex;
+}
+
+.navbar a {
+  text-decoration: none;
+  margin-left: 50px;
+  color: #000;
+}
+.navbar a:hover {
+  color: #be3c3f;
+}
+.navbar li {
+  list-style-type: none;
+}
