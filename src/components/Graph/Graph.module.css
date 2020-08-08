@@ -22,7 +22,11 @@
   font-weight: normal;
 }
 
-.title {
+.chartTitle {
   display: flex;
   justify-content: center;
+}
+
+.chartTitle h1 {
+  margin-right: 10px;
 }

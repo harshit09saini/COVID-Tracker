@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { FetchAllTimeData } from "../../api";
 import { Bar, Line } from "react-chartjs-2";
 import styles from "./Graph.module.css";
+import emojiFlags from "emoji-flags";
 
 export default function Graph({ data }) {
   const { Country, CountryCode, Slug } = data;
@@ -97,21 +98,31 @@ export default function Graph({ data }) {
       />
     );
   }
-
+  const flag = emojiFlags.countryCode(`${CountryCode}`);
+  if (flag) console.log(flag.emoji);
   return (
     <div className={styles.chartsContainer}>
       {Country ? (
         <div className={styles.charts}>
           <div className={styles.chart}>
-            <h1>Total Confirmed Cases in {Country}</h1>
+            <div className={styles.chartTitle}>
+              <h1>Total Confirmed Cases in {Country} </h1>
+              {flag ? <h1>{flag.emoji}</h1> : null}
+            </div>
             <div>{LineChartConfirmed}</div>
           </div>
           <div className={styles.chart}>
-            <h1>Total Recovered Cases in {Country}</h1>
+            <div className={styles.chartTitle}>
+              <h1>Total Recovered Cases in {Country}</h1>
+              {flag ? <h1>{flag.emoji}</h1> : null}
+            </div>
             <div>{LineChartRecovered}</div>
           </div>
           <div className={styles.chart}>
-            <h1>Total Deaths in {Country}</h1>
+            <div className={styles.chartTitle}>
+              <h1>Total Deaths in {Country}</h1>
+              {flag ? <h1>{flag.emoji}</h1> : null}
+            </div>
             <div>{LineChartDeaths}</div>
           </div>
         </div>
