@@ -7,15 +7,14 @@ export default function CountryDropdown({ handleCountryChange }) {
 
   useEffect(() => {
     async function requestCountryList() {
-      const response = await FetchCountries();
-      const CountryList = response.map(({ Country }) => Country);
-      const SlugList = response.map(({ Slug }) => Slug);
-      setCountries({ CountryList, SlugList });
+      setCountries(await FetchCountries());
+      // const response = await FetchCountries();
+      // const CountryList = response.map(({ Country }) => Country);
+      // const SlugList = response.map(({ Slug }) => Slug);
+      // setCountries({ CountryList, SlugList });
     }
     requestCountryList();
   }, [setCountries]);
-
-  const { CountryList, SlugList } = countries;
 
   // if (CountryList) console.log(`${CountryList[108]}, ${SlugList[108]}`);
   return (
@@ -24,29 +23,28 @@ export default function CountryDropdown({ handleCountryChange }) {
         <select
           id="Country"
           onChange={(e) => {
-            const selectedIndex = e.target.options.selectedIndex;
+            // const selectedIndex = e.target.options.selectedIndex;
 
             handleCountryChange(
-              e.target.value,
-              e.target.options[selectedIndex].getAttribute("data-slug")
+              e.target.value
+              // e.target.options[selectedIndex].getAttribute("data-slug")
             );
           }}
           onBlur={(e) => {
-            const selectedIndex = e.target.options.selectedIndex;
+            // const selectedIndex = e.target.options.selectedIndex;
 
             handleCountryChange(
-              e.target.value,
-              e.target.options[selectedIndex].getAttribute("data-slug")
+              e.target.value
+              // e.target.options[selectedIndex].getAttribute("data-slug")
             );
           }}
         >
           <option>Global</option>
-          {CountryList
-            ? CountryList.map((country, index) => (
+          {countries
+            ? countries.map((country) => (
                 <option
                   key={country}
-                  id={SlugList[index]}
-                  data-slug={SlugList[index]}
+                  // data-slug={SlugList[index]}
                   value={country}
                 >
                   {country}

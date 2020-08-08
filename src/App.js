@@ -5,16 +5,17 @@ import CountryDropdown from "./components/CountryDropdown/CountryDropdown";
 import Graph from "./components/Graph/Graph";
 import { fetchTotalData } from "./api";
 import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 
 class App extends Component {
-  state = { data: {}, country: "", slug: "" };
+  state = { data: {}, country: "" };
   async componentDidMount() {
     const data = await fetchTotalData();
 
     this.setState({ data });
   }
 
-  handleCountryChange = async (country, slug) => {
+  handleCountryChange = async (country) => {
     const Countrydata = await fetchTotalData(country);
 
     if (Countrydata) {
@@ -32,7 +33,7 @@ class App extends Component {
       });
     }
 
-    this.setState({ country, slug });
+    this.setState({ country });
   };
 
   render() {
@@ -41,7 +42,8 @@ class App extends Component {
         <Header />
         <Card data={this.state.data} />
         <CountryDropdown handleCountryChange={this.handleCountryChange} />
-        <Graph country={this.state.country} slug={this.state.slug} />
+        <Graph data={this.state.data} />
+        <Footer />
       </div>
     );
   }

@@ -39,9 +39,9 @@ export const fetchTotalData = async (selectedCountry) => {
 export const FetchCountries = async () => {
   try {
     const { data } = await axios.get(`${apiURL}/countries`);
-    // const CountryList = data.map(({ Country }) => Country);
+    const CountryList = data.map(({ Country }) => Country);
 
-    return data;
+    return CountryList;
   } catch (error) {
     console.log(error);
   }

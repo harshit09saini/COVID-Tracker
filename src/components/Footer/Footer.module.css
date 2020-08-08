@@ -1,0 +1,17 @@
+.contentFooter {
+  height: 10vh;
+  position: absolute;
+  left: 0px;
+  width: 100vw;
+  background-color: rgba(190, 60, 63, 1);
+  color: #fdfffc;
+  padding: 20px;
+}
+
+.contentFooter p {
+  text-align: center;
+}
+
+.contentFooter a {
+  color: inherit;
+}

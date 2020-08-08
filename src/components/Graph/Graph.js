@@ -3,17 +3,16 @@ import { FetchAllTimeData } from "../../api";
 import { Bar, Line } from "react-chartjs-2";
 import styles from "./Graph.module.css";
 
-export default function Graph(props) {
-  const { country, slug } = props;
+export default function Graph({ data }) {
+  const { Country, CountryCode, Slug } = data;
   const [AllTimeData, setAllTimeData] = useState([]);
   const { Confirmed, Recovered, Deaths } = AllTimeData;
   useEffect(() => {
     async function requestAllTimeData() {
-      setAllTimeData(await FetchAllTimeData(slug));
+      if (Slug) setAllTimeData(await FetchAllTimeData(Slug));
     }
     requestAllTimeData();
-  }, [country, slug]);
-
+  }, [Slug]);
   // CONFIRMED CHART DATA
   if (Confirmed) {
     const DateString = Confirmed.map(({ Date }) => Date);
@@ -32,9 +31,10 @@ export default function Graph(props) {
               label: "Confirmed",
               backgroundColor: "#ECDD7B",
               borderColor: "rgba(0,0,0,0.5)",
-              borderWidth: 1,
+              borderWidth: 1.2,
               showLine: true,
               fill: true,
+              pointRadius: 2,
             },
           ],
         }}
@@ -62,6 +62,7 @@ export default function Graph(props) {
               borderWidth: 1,
               showLine: true,
               fill: true,
+              pointRadius: 2,
             },
           ],
         }}
@@ -89,6 +90,7 @@ export default function Graph(props) {
               borderWidth: 1,
               showLine: true,
               fill: true,
+              pointRadius: 2,
             },
           ],
         }}
@@ -98,18 +100,18 @@ export default function Graph(props) {
 
   return (
     <div className={styles.chartsContainer}>
-      {country ? (
+      {Country ? (
         <div className={styles.charts}>
           <div className={styles.chart}>
-            <h1>Total Confirmed Cases in {country}</h1>
+            <h1>Total Confirmed Cases in {Country}</h1>
             <div>{LineChartConfirmed}</div>
           </div>
           <div className={styles.chart}>
-            <h1>Total Recovered Cases in {country}</h1>
+            <h1>Total Recovered Cases in {Country}</h1>
             <div>{LineChartRecovered}</div>
           </div>
           <div className={styles.chart}>
-            <h1>Total Deaths in {country}</h1>
+            <h1>Total Deaths in {Country}</h1>
             <div>{LineChartDeaths}</div>
           </div>
         </div>
