@@ -1,5 +1,8 @@
 ## COVID-19 Tracker
 
+## Screenshot 
+
+![](/public/Assets/screen1.png)
 ## Installation
 
 ### Clone or download this repository
